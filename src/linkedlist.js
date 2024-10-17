@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import Node from "./node";
 
 class LinkedList {
@@ -88,6 +89,35 @@ class LinkedList {
       currentNode = currentNode.nextNode;
     }
     return null;
+  }
+
+  toString() {
+    let currentNode = this.head;
+    let string = "";
+    while (currentNode) {
+      string += `( ${currentNode.value} ) -> `;
+      currentNode = currentNode.nextNode;
+    }
+    string += "NULL";
+    return string;
+  }
+
+  insertAt(value, index) {
+    const node = new Node(value);
+    let currentNode = this.head;
+    for (let i = 0; i < index - 1; i++) {
+      currentNode = currentNode.nextNode;
+    }
+    node.nextNode = currentNode.nextNode;
+    currentNode.nextNode = node;
+  }
+
+  removeAt(index) {
+    let currentNode = this.head;
+    for (let i = 0; i < index - 1; i++) {
+      currentNode = currentNode.nextNode;
+    }
+    currentNode.nextNode = currentNode.nextNode.nextNode;
   }
 }
 
